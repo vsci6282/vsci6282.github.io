@@ -8,6 +8,9 @@ const key2 = document.getElementById("key2");
 let key2down = false;
 const key3 = document.getElementById("key3");
 const resultPColor = document.getElementById("result");
+const key1pic = document.getElementById("key1pic");
+const key2pic = document.getElementById("key2pic");
+const key3pic = document.getElementById("key3pic");
 let pp = false;
 let keyBdown = false;
 let selectedInt = 0;
@@ -62,7 +65,6 @@ document.addEventListener('keyup', (event) => {
     });
 
 function main() {
-  pp = false
   selectedNum = Math.floor(Math.random()*7);
 
   /*if (selectedNum == previousNum) {
@@ -81,25 +83,41 @@ function main() {
 
 function getKeys() {
   selectedInt = 0;
-  if (!pp) {
-    if (key1down) {
-      selectedInt += 4;
-    }
-    if (key2down) {
-      selectedInt += 2;
-    }
-    if (key3down) {
-      selectedInt += 1;
-    }
+  if (key1down) {
+    selectedInt += 4;
   }
+  if (key2down) {
+    selectedInt += 2;
+  }
+  if (key3down) {
+    selectedInt += 1;
+  }
+  updateKeyPic();
   //document.getElementById("num").innerHTML = selectedInt;
 }
 
+function updateKeyPic() {
+  if (key1down) {
+    key1pic.src ="key down.png";
+  } else {
+    key1pic.src ="key up.png";
+  }
+  if (key2down) {
+    key2pic.src ="key down.png";
+  } else {
+    key2pic.src ="key up.png";
+  }
+  if (key3down) {
+    key3pic.src ="key down.png";
+  } else {
+    key3pic.src ="key up.png";
+  }
+}
+
 function checkResult() {
-  if (trumpetNotesDictionary[notes[selectedNum]] == selectedInt || pp) {
+  if (trumpetNotesDictionary[notes[selectedNum]] == selectedInt) {
     document.getElementById("result").innerHTML = "correct!";
     resultPColor.style.color = 'green';
-    pp = true;
     setTimeout(main, 100);
   } else {
     document.getElementById("result").innerHTML = "incorrect";
