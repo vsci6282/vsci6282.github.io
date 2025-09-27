@@ -109,29 +109,29 @@ function updateKeyPic() {
 
 function updateNotePic(num) {
   if (num == 0) {
-    notePic.src = "note pictures/c4.png";
+    notePic.src = "c4.png";
   } else if (num == 1) {
-    notePic.src = "note pictures/cs4.png";
+    notePic.src = "cs4.png";
   } else if (num == 2) {
-    notePic.src = "note pictures/d4.png";
+    notePic.src = "d4.png";
   } else if (num == 3) {
-    notePic.src = "note pictures/eb4.png";
+    notePic.src = "eb4.png";
   } else if (num == 4) {
-    notePic.src = "note pictures/e4.png";
+    notePic.src = "e4.png";
   } else if (num == 5) {
-    notePic.src = "note pictures/f4.png";
+    notePic.src = "f4.png";
   } else if (num == 6) {
-    notePic.src = "note pictures/fs4.png";
+    notePic.src = "fs4.png";
   } else if (num == 7) {
-    notePic.src = "note pictures/g4.png";
+    notePic.src = "g4.png";
   } else if (num == 8) {
-    notePic.src = "note pictures/gs4.png";
+    notePic.src = "gs4.png";
   } else if (num == 9) {
-    notePic.src = "note pictures/a4.png";
+    notePic.src = "a4.png";
   } else if (num == 10) {
-    notePic.src = "note pictures/bb4.png";
+    notePic.src = "bb4.png";
   } else if (num == 11) {
-    notePic.src = "note pictures/b4.png";
+    notePic.src = "b4.png";
   } 
 }
 
