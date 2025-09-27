@@ -1,7 +1,7 @@
 let selectedNum = 0;
 let previousNum = 0;
-const notes = ['c', 'd', 'e', 'f', 'g', 'a', 'b'];
-const trumpetNotesDictionary = {c: 0, d: 5, e: 6, f: 4, g: 0, a: 6, b: 2};
+const notes = ['c', 'cs', 'd', 'eb', 'e', 'f', 'fs', 'g', 'gs', 'a','bb', 'b'];
+const trumpetNotesDictionary = {c:0, cs:7, d:5, eb:3, e:6, f:4, fs:2, g:0, gs:3, a:6, bb:4, b:2};
 const key1 = document.getElementById("key1");
 let key1down = false;
 const key2 = document.getElementById("key2");
@@ -11,12 +11,11 @@ const resultPColor = document.getElementById("result");
 const key1pic = document.getElementById("key1pic");
 const key2pic = document.getElementById("key2pic");
 const key3pic = document.getElementById("key3pic");
+const notePic = document.getElementById("notePic");
 let pp = false;
 let keyBdown = false;
 let selectedInt = 0;
 let num = 0;
-
-main()
 
 document.addEventListener('keydown', (event) => {
         if (event.key === 'j') {
@@ -59,27 +58,21 @@ document.addEventListener('keyup', (event) => {
         }
         if (event.key === 'b') {
           keyBdown = false;
-          checkResult();
         }
         getKeys();
     });
 
+
+
 function main() {
-  selectedNum = Math.floor(Math.random()*7);
+  selectedNum = Math.floor(Math.random()*12);
 
-  /*if (selectedNum == previousNum) {
-    while (selectedNum == previousNum) {
-      previousNum = selectedNum;
-      selectedNum = Math.floor(Math.random()*7);
-    }
-  }*/
 
-  document.getElementById("selected note").innerHTML = notes[selectedNum];
-
-  resetResult()
-  //document.getElementById("note").innerHTML = trumpetNoteToNum(notes[num]);
-  //document.getElementById("test").innerHTML = selectedNote;
-}
+  //document.getElementById("selected note").innerHTML = notes[selectedNum];
+  getKeys()
+  updateNotePic(selectedNum);
+  resetResult();
+}  
 
 function getKeys() {
   selectedInt = 0;
@@ -112,6 +105,34 @@ function updateKeyPic() {
   } else {
     key3pic.src ="key up.png";
   }
+}
+
+function updateNotePic(num) {
+  if (num == 0) {
+    notePic.src = "note pictures/c4.png";
+  } else if (num == 1) {
+    notePic.src = "note pictures/cs4.png";
+  } else if (num == 2) {
+    notePic.src = "note pictures/d4.png";
+  } else if (num == 3) {
+    notePic.src = "note pictures/eb4.png";
+  } else if (num == 4) {
+    notePic.src = "note pictures/e4.png";
+  } else if (num == 5) {
+    notePic.src = "note pictures/f4.png";
+  } else if (num == 6) {
+    notePic.src = "note pictures/fs4.png";
+  } else if (num == 7) {
+    notePic.src = "note pictures/g4.png";
+  } else if (num == 8) {
+    notePic.src = "note pictures/gs4.png";
+  } else if (num == 9) {
+    notePic.src = "note pictures/a4.png";
+  } else if (num == 10) {
+    notePic.src = "note pictures/bb4.png";
+  } else if (num == 11) {
+    notePic.src = "note pictures/b4.png";
+  } 
 }
 
 function checkResult() {
@@ -175,3 +196,5 @@ function test() {
   //e = "b";
   //document.getElementById("test").innerHTML = e;
 }
+
+main();
