@@ -1,7 +1,15 @@
 let selectedNum = 0;
 let previousNum = 0;
-const notes = ['c4','cs4','db4','d4','ds4','eb4','e4','f4','fs4','gb4','g4','gs4','ab4','a4','as4','bb4','b4','c5'];
-const trumpetNotesDictionary = {c4:0,cs4:7,db4:7,d4:5,ds4:3,eb4:3,e4:6,f4:4,fs4:2,gb4:2,g4:0,gs4:3,ab4:3,a4:6,as4:4,bb4:4,b4:2,c5:0};
+const notes = ['g3','gs3','ab3','a3','as3','bb3','b3','c4','cs4','db4','d4','ds4','eb4','e4','f4','fs4','gb4','g4','gs4','ab4','a4','as4','bb4','b4','c5','cs5','db5','d5','ds5','eb5','e5','f5','fs5','gb5','g5','gs5','ab5','a5','as5','bb5','b5'];
+const trumpetNotesDictionary = {g3:5,gs3:3,ab3:3,a3:6,as3:4,bb3:4,b3:2,c4:0,cs4:7,db4:7,d4:5,ds4:3,eb4:3,e4:6,f4:4,fs4:2,gb4:2,g4:0,gs4:3,ab4:3,a4:6,as4:4,bb4:4,b4:2,c5:0,cs5:6,db5:6,d5:4,ds5:6,eb5:2,e5:0,f5:4,fs5:2,gb5:2,g5:0,gs5:3,ab5:3,a5:6,as5:4,bb5:4,b5:2};
+const everyNote = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40];
+const wholeNotes = [0,3,6,7,10,13,14,17,20,23,24,27,30,31,34,37,40];
+const sharpsAndFlatNotes = [1,2,4,5,8,9,11,12,15,16,18,19,21,22,25,26,28,29,32,33,35,36,38,39];
+const basicCScale = [7,10,13,14,17,20,23,24];
+const cScaleExt1 = [0,3,6,7,10];
+const cScaleExt2 = [24,27,30,31,34];
+const fullCScaleRange = [0,3,6,7,10,13,14,17,20,23,24,27,30,31,34];
+let askableNotes = everyNote
 const key1 = document.getElementById("key1");
 let key1down = false;
 const key2 = document.getElementById("key2");
@@ -17,6 +25,20 @@ const notePic = document.getElementById("notePic");
 const startButton = document.getElementById("startButton");
 const retryButton = document.getElementById("retryButton");
 retryButton.style.display = 'none';
+const wholeNoteButton = document.getElementById("wholeNoteButton");
+wholeNoteButton.style.display = 'none';
+const sharpsFlatNotesButton = document.getElementById("sharpsflatsNoteButton");
+sharpsFlatNotesButton.style.display = 'none';
+const allNotesButton = document.getElementById("allNotesButton");
+allNotesButton.style.display = 'none';
+const basicCScaleButton = document.getElementById("basicCScaleButton");
+basicCScaleButton.style.display = 'none';
+const cScaleExt1Button = document.getElementById("cScaleExt1Button");
+cScaleExt1Button.style.display = 'none';
+const cScaleExt2Button = document.getElementById("cScaleExt2Button");
+cScaleExt2Button.style.display = 'none';
+const fullCScaleRangeButton = document.getElementById("fullCScaleRangeButton");
+fullCScaleRangeButton.style.display = 'none';
 let timer = 60;
 let hasStarted = false
 let pp = false;
@@ -71,18 +93,78 @@ document.addEventListener('keyup', (event) => {
         getKeys();
     });
 
+
+
+
+
+
+
 function startup() {
   document.getElementById("finalResult").innerHTML = "";
   startButton.style.display = 'none';
   retryButton.style.display = 'none';
   hasStarted = true;
-  startTimer();
-  main();
+  wholeNoteButton.style.display = 'block';
+  sharpsFlatNotesButton.style.display = 'block';
+  allNotesButton.style.display = 'block';
+  basicCScaleButton.style.display = 'block';
+  cScaleExt1Button.style.display = 'block';
+  cScaleExt2Button.style.display = 'block';
+  fullCScaleRangeButton.style.display = 'block';
 } 
 
+function onWholeNoteButtonClick() {
+  askableNotes = wholeNotes;
+  startTimer();
+  main();
+}
+
+function onSharpsFlatsButtonClick() {
+  askableNotes = sharpsAndFlatNotes;
+  startTimer();
+  main();
+}
+
+function onAllNoteButtonClick() {
+  askableNotes = everyNote;
+  startTimer();
+  main();
+}
+
+function onBasicCScaleButtonButtonClick() {
+  askableNotes = basicCScale;
+  startTimer();
+  main();
+}
+
+function onCScaleExt1ButtonClick() {
+  askableNotes = cScaleExt1;
+  startTimer();
+  main();
+}
+
+function onCScaleExt2Button() {
+  askableNotes = cScaleExt2;
+  startTimer();
+  main();
+}
+
+function onFullCScaleRangeButtonClick() {
+  askableNotes = fullCScaleRange;
+  startTimer();
+  main();
+}
+
 function main() {
+  wholeNoteButton.style.display = 'none';
+  sharpsFlatNotesButton.style.display = 'none';
+  allNotesButton.style.display = 'none';
+  basicCScaleButton.style.display = 'none';
+  cScaleExt1Button.style.display = 'none';
+  cScaleExt2Button.style.display = 'none';
+  fullCScaleRangeButton.style.display = 'none';
   startButton.style.display = 'none';
-  selectedNum = Math.floor(Math.random()*18);
+  selectedNum = askableNotes[Math.floor(Math.random() * askableNotes.length)];
 
 
   //document.getElementById("selected note").innerHTML = notes[selectedNum];
@@ -130,43 +212,7 @@ function updateKeyPic() {
 }
 
 function updateNotePic() {
-  if (selectedNum == 0) {
-    notePic.src = "c4.png";
-  } else if (selectedNum == 1) {
-    notePic.src = "cs4.png";
-  } else if (selectedNum == 2) {
-    notePic.src = "db4.png";
-  } else if (selectedNum == 3) {
-    notePic.src = "d4.png";
-  } else if (selectedNum == 4) {
-    notePic.src = "ds4.png";
-  } else if (selectedNum == 5) {
-    notePic.src = "eb4.png";
-  } else if (selectedNum == 6) {
-    notePic.src = "e4.png";
-  } else if (selectedNum == 7) {
-    notePic.src = "f4.png";
-  } else if (selectedNum == 8) {
-    notePic.src = "fs4.png";
-  } else if (selectedNum == 9) {
-    notePic.src = "gb4.png";
-  } else if (selectedNum == 10) {
-    notePic.src = "g4.png";
-  } else if (selectedNum == 11) {
-    notePic.src = "gs4.png";
-  } else if (selectedNum == 12) {
-    notePic.src = "ab4.png";
-  } else if (selectedNum == 13) {
-    notePic.src = "a4.png";
-  } else if (selectedNum == 14) {
-    notePic.src = "as4.png";
-  } else if (selectedNum == 15) {
-    notePic.src = "bb4.png";
-  } else if (selectedNum == 16) {
-    notePic.src = "b4.png";
-  } else if (selectedNum == 17) {
-    notePic.src = "c5.png";
-  } 
+  notePic.src = notes[selectedNum] + ".png"
 }
 
 function checkResult() {
@@ -251,5 +297,8 @@ function timerEnd() {
   key3pic.src = "";
   retryButton.style.display = 'block';
   hasStarted = false;
+  resetResult();
   document.getElementById("finalResult").innerHTML = "Your score is " + correctGuesses + "/" + guesses + " or " + (100*correctGuesses/guesses).toFixed(1) + "%";
+  guesses = 0;
+  correctGuesses = 0;
 }
