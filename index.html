@@ -1,22 +1,193 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+            
+            body {
+                background-color: #262525;
+            }
+
+            h1 {
+                color: white;
+                text-align: center;
+                font-size: 40px;
+            }
+
+            .container {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-self: start;
+                gap: 7px;
+                padding: 0px;
+            }
+
+            #scaleResultantChoices {
+                display: 'block';
+            }
+
+            #allScaleChoices {
+                display: grid;
+                grid-template-columns: repeat(13, 1fr);
+            }
+
+            #gameContainer {
+                margin: auto;
+                background-color: 'white';
+                align-items: center;
+                width: 400px;
+                align-self: center;
+                justify-content: center;
+                border-radius: 15px;
+            }
+
+            #keyContainer {
+                flex-direction: row;
+                align-self: center;
+            }
+
+            button {
+                background-color: #909090;
+                border: none;
+                font-size: 16px;
+                border-radius: 3px;
+                padding: 10px 3px;
+                align-self: center;
+            }
+
+            button:hover {
+                background-color: #555555;color: white;
+                transition-duration: 0.25s;
+            }
+
+        </style>
         <title>Note Helper</title>
     </head>
     <body>
 
-        <h2>Note Helper</h2>
-
-        <button type="button" onclick="startup()" id="startButton">start</button>
+        <h1>Note Helper</h1>
         <button type="button" onclick="startup()" id="retryButton">retry</button>
-        <br>
-        <button type="button" onclick="onWholeNoteButtonClick()" id="wholeNoteButton">Whole</button>
-        <button type="button" onclick="onSharpsFlatsButtonClick()" id="sharpsflatsNoteButton">Sharps & Flats</button>
-        <button type="button" onclick="onAllNoteButtonClick()" id="allNotesButton">All Notes</button>
-        <button type="button" onclick="onBasicCScaleButtonButtonClick()" id="basicCScaleButton">Basic C Scale</button>
-        <button type="button" onclick="onCScaleExt1ButtonClick()" id="cScaleExt1Button">C Scale Extension 1</button>
-        <button type="button" onclick="onCScaleExt2Button()" id="cScaleExt2Button">C Scale Extension 2</button>
-        <button type="button" onclick="onFullCScaleRangeButtonClick()" id="fullCScaleRangeButton">Full C Scale</button>
+        <div class='container' id='allScaleChoices'>
+            
+            <button type="button" onclick="onGeneralNoteChoiceButtonClick()" id="GeneralNoteChoiceButton">General</button>
+            <button type="button" onclick="oncScaleChoiceButtonClick()" id="cScaleChoiceButton">C Scale</button>
+            <button type="button" onclick="oncsScaleChoiceButtonClick()" id="csScaleChoiceButton">C# Scale</button>
+            <button type="button" onclick="ondScaleChoiceButtonClick()" id="dScaleChoiceButton">D Scale</button>
+            <button type="button" onclick="onebScaleChoiceButtonClick()" id="ebScaleChoiceButton">Eb Scale</button>
+            <button type="button" onclick="oneScaleChoiceButtonClick()" id="eScaleChoiceButton">E Scale</button>
+            <button type="button" onclick="onfScaleChoiceButtonClick()" id="fScaleChoiceButton">F Scale</button>
+            <button type="button" onclick="onfsScaleChoiceButtonClick()" id="fsScaleChoiceButton">F# Scale</button>
+            <button type="button" onclick="ongScaleChoiceButtonClick()" id="gScaleChoiceButton">G Scale</button>
+            <button type="button" onclick="onabScaleChoiceButtonClick()" id="abScaleChoiceButton">Ab Scale</button>
+            <button type="button" onclick="onaScaleChoiceButtonClick()" id="aScaleChoiceButton">A Scale</button>
+            <button type="button" onclick="onbbScaleChoiceButtonClick()" id="bbScaleChoiceButton">Bb Scale</button>
+            <button type="button" onclick="onbScaleChoiceButtonClick()" id="bScaleChoiceButton">B Scale</button>
+        
+            <div class="container" id="generalNotesContainer" style="visibility: hidden;">
+                <button type="button" onclick="onWholeNoteButtonClick()" id="wholeNoteButton">Whole</button>
+                <button type="button" onclick="onSharpsFlatsButtonClick()" id="sharpsflatsNoteButton">Sharps & Flats</button>
+                <button type="button" onclick="onAllNoteButtonClick()" id="allNotesButton">All Notes</button>
+            </div>
+            <div class="container" id="cScaleContainer" style="visibility: hidden;">
+                <button type="button" onclick="oncScaleExc1ButtonClick()" id="cScaleExc1Button">C Scale Exercise 1</button>
+                <button type="button" onclick="oncScaleExc2ButtonClick()" id="cScaleExc2Button">C Scale Exercise 2</button>
+                <button type="button" onclick="onbasiccScaleButtonClick()" id="basiccScaleButton">Basic C Scale</button>
+                <button type="button" onclick="oncScaleExt1ButtonClick()" id="cScaleExt1Button">C Scale Extension 1</button>
+                <button type="button" onclick="oncScaleExt2ButtonClick()" id="cScaleExt2Button">C Scale Extension 2</button>
+                <button type="button" onclick="onfullcScaleRangeButtonClick()" id="fullcScaleRangeButton">Full C Scale Range</button>
+            </div>
+            <div class="container" id="csScaleContainer" style="visibility: hidden;">
+                <button type="button" onclick="oncsScaleExc1ButtonClick()" id="csScaleExc1Button">C# Scale Exercise 1</button>
+                <button type="button" onclick="oncsScaleExc2ButtonClick()" id="csScaleExc2Button">C# Scale Exercise 2</button>
+                <button type="button" onclick="onbasiccsScaleButtonClick()" id="basiccsScaleButton">Basic C# Scale</button>
+                <button type="button" onclick="oncsScaleExt1ButtonClick()" id="csScaleExt1Button">C# Scale Extension 1</button>
+                <button type="button" onclick="oncsScaleExt2ButtonClick()" id="csScaleExt2Button">C# Scale Extension 2</button>
+                <button type="button" onclick="onfullcsScaleRangeButtonClick()" id="fullcsScaleRangeButton">Full C# Scale Range</button>
+            </div>
+            <div class="container" id="dScaleContainer" style="visibility: hidden;">
+                <button type="button" onclick="ondScaleExc1ButtonClick()" id="dScaleExc1Button">D Scale Exercise 1</button>
+                <button type="button" onclick="ondScaleExc2ButtonClick()" id="dScaleExc2Button">D Scale Exercise 2</button>
+                <button type="button" onclick="onbasicdScaleButtonClick()" id="basicdScaleButton">Basic D Scale</button>
+                <button type="button" onclick="ondScaleExt1ButtonClick()" id="dScaleExt1Button">D Scale Extension 1</button>
+                <button type="button" onclick="ondScaleExt2ButtonClick()" id="dScaleExt2Button">D Scale Extension 2</button>
+                <button type="button" onclick="onfulldScaleRangeButtonClick()" id="fulldScaleRangeButton">Full D Scale Range</button>
+            </div>
+            <div class="container" id="ebScaleContainer" style="visibility: hidden;">
+                <button type="button" onclick="onebScaleExc1ButtonClick()" id="ebScaleExc1Button">Eb Scale Exercise 1</button>
+                <button type="button" onclick="onebScaleExc2ButtonClick()" id="ebScaleExc2Button">Eb Scale Exercise 2</button>
+                <button type="button" onclick="onbasicebScaleButtonClick()" id="basicebScaleButton">Basic Eb Scale</button>
+                <button type="button" onclick="onebScaleExt1ButtonClick()" id="ebScaleExt1Button">Eb Scale Extension 1</button>
+                <button type="button" onclick="onebScaleExt2ButtonClick()" id="ebScaleExt2Button">Eb Scale Extension 2</button>
+                <button type="button" onclick="onfullebScaleRangeButtonClick()" id="fullebScaleRangeButton">Full Eb Scale Range</button>
+            </div>
+            <div class="container" id="eScaleContainer" style="visibility: hidden;">
+                <button type="button" onclick="oneScaleExc1ButtonClick()" id="eScaleExc1Button">E Scale Exercise 1</button>
+                <button type="button" onclick="oneScaleExc2ButtonClick()" id="eScaleExc2Button">E Scale Exercise 2</button>
+                <button type="button" onclick="onbasiceScaleButtonClick()" id="basiceScaleButton">Basic E Scale</button>
+                <button type="button" onclick="oneScaleExt1ButtonClick()" id="eScaleExt1Button">E Scale Extension 1</button>
+                <button type="button" onclick="oneScaleExt2ButtonClick()" id="eScaleExt2Button">E Scale Extension 2</button>
+                <button type="button" onclick="onfulleScaleRangeButtonClick()" id="fulleScaleRangeButton">Full E Scale Range</button>
+            </div>
+            <div class="container" id="fScaleContainer" style="visibility: hidden;">
+                <button type="button" onclick="onfScaleExc1ButtonClick()" id="fScaleExc1Button">F Scale Exercise 1</button>
+                <button type="button" onclick="onfScaleExc2ButtonClick()" id="fScaleExc2Button">F Scale Exercise 2</button>
+                <button type="button" onclick="onbasicfScaleButtonClick()" id="basicfScaleButton">Basic F Scale</button>
+                <button type="button" onclick="onfScaleExt1ButtonClick()" id="fScaleExt1Button">F Scale Extension 1</button>
+                <button type="button" onclick="onfScaleExt2ButtonClick()" id="fScaleExt2Button">F Scale Extension 2</button>
+                <button type="button" onclick="onfullfScaleRangeButtonClick()" id="fullfScaleRangeButton">Full F Scale Range</button>
+            </div>
+            <div class="container" id="fsScaleContainer" style="visibility: hidden;">
+                <button type="button" onclick="onfsScaleExc1ButtonClick()" id="fsScaleExc1Button">F# Scale Exercise 1</button>
+                <button type="button" onclick="onfsScaleExc2ButtonClick()" id="fsScaleExc2Button">F# Scale Exercise 2</button>
+                <button type="button" onclick="onbasicfsScaleButtonClick()" id="basicfsScaleButton">Basic F# Scale</button>
+                <button type="button" onclick="onfsScaleExt1ButtonClick()" id="fsScaleExt1Button">F# Scale Extension 1</button>
+                <button type="button" onclick="onfsScaleExt2ButtonClick()" id="fsScaleExt2Button">F# Scale Extension 2</button>
+                <button type="button" onclick="onfullfsScaleRangeButtonClick()" id="fullfsScaleRangeButton">Full F# Scale Range</button>
+            </div>
+            <div class="container" id="gScaleContainer" style="visibility: hidden;">
+                <button type="button" onclick="ongScaleExc1ButtonClick()" id="gScaleExc1Button">G Scale Exercise 1</button>
+                <button type="button" onclick="ongScaleExc2ButtonClick()" id="gScaleExc2Button">G Scale Exercise 2</button>
+                <button type="button" onclick="onbasicgScaleButtonClick()" id="basicgScaleButton">Basic G Scale</button>
+                <button type="button" onclick="ongScaleExt1ButtonClick()" id="gScaleExt1Button">G Scale Extension 1</button>
+                <button type="button" onclick="ongScaleExt2ButtonClick()" id="gScaleExt2Button">G Scale Extension 2</button>
+                <button type="button" onclick="onfullgScaleRangeButtonClick()" id="fullgScaleRangeButton">Full G Scale Range</button>
+            </div>
+            <div class="container" id="abScaleContainer" style="visibility: hidden;">
+                <button type="button" onclick="onabScaleExc1ButtonClick()" id="abScaleExc1Button">Ab Scale Exercise 1</button>
+                <button type="button" onclick="onabScaleExc2ButtonClick()" id="abScaleExc2Button">Ab Scale Exercise 2</button>
+                <button type="button" onclick="onbasicabScaleButtonClick()" id="basicabScaleButton">Basic Ab Scale</button>
+                <button type="button" onclick="onabScaleExt1ButtonClick()" id="abScaleExt1Button">Ab Scale Extension 1</button>
+                <button type="button" onclick="onabScaleExt2ButtonClick()" id="abScaleExt2Button">Ab Scale Extension 2</button>
+                <button type="button" onclick="onfullabScaleRangeButtonClick()" id="fullabScaleRangeButton">Full Ab Scale Range</button>
+            </div>
+            <div class="container" id="aScaleContainer" style="visibility: hidden;">
+                <button type="button" onclick="onaScaleExc1ButtonClick()" id="aScaleExc1Button">A Scale Exercise 1</button>
+                <button type="button" onclick="onaScaleExc2ButtonClick()" id="aScaleExc2Button">A Scale Exercise 2</button>
+                <button type="button" onclick="onbasicaScaleButtonClick()" id="basicaScaleButton">Basic A Scale</button>
+                <button type="button" onclick="onaScaleExt1ButtonClick()" id="aScaleExt1Button">A Scale Extension 1</button>
+                <button type="button" onclick="onaScaleExt2ButtonClick()" id="aScaleExt2Button">A Scale Extension 2</button>
+                <button type="button" onclick="onfullaScaleRangeButtonClick()" id="fullaScaleRangeButton">Full A Scale Range</button>
+            </div>
+            <div class="container" id="bbScaleContainer" style="visibility: hidden;">
+                <button type="button" onclick="onbbScaleExc1ButtonClick()" id="bbScaleExc1Button">Bb Scale Exercise 1</button>
+                <button type="button" onclick="onbbScaleExc2ButtonClick()" id="bbScaleExc2Button">Bb Scale Exercise 2</button>
+                <button type="button" onclick="onbasicbbScaleButtonClick()" id="basicbbScaleButton">Basic Bb Scale</button>
+                <button type="button" onclick="onbbScaleExt1ButtonClick()" id="bbScaleExt1Button">Bb Scale Extension 1</button>
+                <button type="button" onclick="onbbScaleExt2ButtonClick()" id="bbScaleExt2Button">Bb Scale Extension 2</button>
+                <button type="button" onclick="onfullbbScaleRangeButtonClick()" id="fullbbScaleRangeButton">Full Bb Scale Range</button>
+            </div>
+            <div class="container" id="bScaleContainer" style="visibility: hidden;">
+                <button type="button" onclick="onbScaleExc1ButtonClick()" id="bScaleExc1Button">B Scale Exercise 1</button>
+                <button type="button" onclick="onbScaleExc2ButtonClick()" id="bScaleExc2Button">B Scale Exercise 2</button>
+                <button type="button" onclick="onbasicbScaleButtonClick()" id="basicbScaleButton">Basic B Scale</button>
+                <button type="button" onclick="onbScaleExt1ButtonClick()" id="bScaleExt1Button">B Scale Extension 1</button>
+                <button type="button" onclick="onbScaleExt2ButtonClick()" id="bScaleExt2Button">B Scale Extension 2</button>
+                <button type="button" onclick="onfullbScaleRangeButtonClick()" id="fullbScaleRangeButton">Full B Scale Range</button>
+            </div>
+        </div>
+
+
+
         <br>
         <!--<input type="checkbox" id="key1" onclick="playKey(1)">
         <label for="key1">key1</label>
@@ -26,22 +197,21 @@
         <label for="key3">key3</label> 
         <p>note to play:</p>-->
 
-
-        
-        <p id="selected note"></p>
-        <p id="timer"></p>
-        <p id="finalResult"></p>
-        <img id="notePic" style= "width:300px" src="">
-        <br>
-        <img id="key1pic" src="" style="width:100px">
-        <img id="key2pic" style= "width:100px" src="">
-        <img id="key3pic" style= "width:100px" src="">
-
-
-        <p id="num"></p>
-
-        <!--<button type="button" onclick="checkResult()">check</button>-->
-        <p id="result"></p>
+        <div class="container" id="gameContainer" style="visibility: hidden;">
+            <p id="selected note"></p>
+            <p id="timer"></p>
+            <p id="finalResult"></p>
+            <img id="notePic" style= "width:300px" src="">
+            <br>
+            <div class="container" id="keyContainer">
+                <img id="key1pic" src="" style="width:100px">
+                <img id="key2pic" style= "width:100px" src="">
+                <img id="key3pic" style= "width:100px" src="">
+            </div>
+            <p id="num"></p>
+            <p id="result"></p>
+            <p id="help"></p>
+        </div>
 
 
         <script src="main.js"></script>
